@@ -1,0 +1,49 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+/*
+ * Complete the 'timeConversion' function below.
+ *
+ * The function is expected to return a STRING.
+ * The function accepts STRING s as parameter.
+ */
+
+string timeConversion(string s) {
+//using the same input string
+
+string hr_str = s.substr(0,2);
+string min = s.substr(3,2);
+string sec= s.substr(6,2);
+string meridian = s.substr(8,2);//here it shows am or pm
+
+int hr = stoi(hr_str);
+if(meridian== "AM"){
+    if(hr==12){
+        hr = 0;
+    }
+} else{
+    if(hr!=12){
+        hr += 12;
+    }
+}
+stringstream sstrm;
+sstrm<<setw(2)<<setfill('0')<<hr;
+return sstrm.str() + ":" + min + ":" + sec;
+}
+
+int main()
+{
+    ofstream fout(getenv("OUTPUT_PATH"));
+
+    string s;
+    getline(cin, s);
+
+    string result = timeConversion(s);
+
+    fout << result << "\n";
+
+    fout.close();
+
+    return 0;
+}
