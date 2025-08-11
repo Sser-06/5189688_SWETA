@@ -1,0 +1,38 @@
+#include<iostream>
+using namespace std;
+
+int sockMerchant(int n, int ar[]) {
+    int pairs = 0;
+    const int MAX_COLORS = 101;
+    int freq[MAX_COLORS] = {0};
+
+    for (int i = 0; i < n; i++) {
+        int color = ar[i];
+        freq[color]++;
+    }
+
+    for (int i = 0; i < MAX_COLORS; i++) {
+        if (freq[i] > 1) {
+            pairs += freq[i] / 2;
+        }
+    }
+
+    return pairs;
+}
+
+int main() {
+    int n;
+    cin >> n;
+
+    int* ar = new int[n];
+
+    for (int i = 0; i < n; i++) {
+        cin >> ar[i];
+    }
+
+    int result = sockMerchant(n, ar);
+    cout << result << endl;
+
+    delete[] ar;
+    return 0;
+}
